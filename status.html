@@ -15,7 +15,7 @@
 <div id="container" class="container">
 
 </div>
-<script id="componentEntryTemplate" type="text/x-handlebars-template">
+<script id="componentListTemplate" type="text/x-handlebars-template">
     <ul id="repositories" class="list-inline row col-xs-12">
         {{#each this}}
         <li class="component-entry col-xs-3">
@@ -108,7 +108,7 @@
     var $container = $("#container");
     var coverallsBadgeTemplate = Handlebars.registerPartial("coveralls_badge", $("#coverallsBadgeTemplate").html());
     var travisBadgeTemplate = Handlebars.registerPartial("travis_badge", $("#travisBadgeTemplate").html());
-    var componentEntryTemplate = Handlebars.compile($("#componentEntryTemplate").html());
+    var componentListTemplate = Handlebars.compile($("#componentListTemplate").html());
 
     var branches = ["master"];
     var repositories = [];
@@ -125,7 +125,7 @@
         });
     });
 
-    $container.html(componentEntryTemplate(repositories));
+    $container.html(componentListTemplate(repositories));
 </script>
 </body>
 </html>
