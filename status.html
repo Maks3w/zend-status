@@ -19,7 +19,9 @@
     <ul id="repositories" class="list-inline row col-xs-12">
         {{#each this}}
         <li class="component-entry col-xs-3">
-            <b>{{name}}</b>
+            <a href="https://github.org/{{full_name}}">
+                <b>{{name}}</b>
+            </a>
             <ul class="list-unstyled">
                 {{#branches}}
                 <li>
