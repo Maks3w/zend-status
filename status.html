@@ -7,7 +7,7 @@
     <style>
         .component-entry {
             text-align: center;
-            height: 4em;
+            height: 7em;
         }
     </style>
 </head>
@@ -22,12 +22,23 @@
             <b>{{name}}</b>
             <ul class="list-unstyled">
                 {{#branches}}
-                <li>{{this}}: {{> travis_badge full_name=../full_name branch=this}}</li>
+                <li>
+                    {{this}}:
+                    <ul class="list-unstyled">
+                        <li>{{> travis_badge full_name=../full_name branch=this}}</li>
+                        <li>{{> coveralls_badge full_name=../full_name branch=this}}</li>
+                    </ul>
+                </li>
                 {{/branches}}
             </ul>
         </li>
         {{/each}}
     </ul>
+</script>
+<script id="coverallsBadgeTemplate" type="text/x-handlebars-template">
+    <a href="https://coveralls.io/r/{{full_name}}?branch={{branch}}">
+        <img src="https://coveralls.io/repos/{{full_name}}/badge.svg?branch={{branch}}"/>
+    </a>
 </script>
 <script id="travisBadgeTemplate" type="text/x-handlebars-template">
     <a href="https://travis-ci.org/{{full_name}}">
@@ -93,6 +104,7 @@
 </script>
 <script>
     var $container = $("#container");
+    var coverallsBadgeTemplate = Handlebars.registerPartial("coveralls_badge", $("#coverallsBadgeTemplate").html());
     var travisBadgeTemplate = Handlebars.registerPartial("travis_badge", $("#travisBadgeTemplate").html());
     var componentEntryTemplate = Handlebars.compile($("#componentEntryTemplate").html());
 
