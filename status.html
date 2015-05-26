@@ -5,9 +5,22 @@
     <title></title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <style>
-        .component-entry {
-            text-align: center;
-            height: 7em;
+        .list {
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+
+            -webkit-flex-wrap: wrap;
+            -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+        }
+
+        .list__item {
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            margin-bottom: 1em;
+            justify-content: center;
         }
     </style>
 </head>
@@ -16,23 +29,25 @@
 
 </div>
 <script id="componentListTemplate" type="text/x-handlebars-template">
-    <ul id="repositories" class="list-inline row col-xs-12">
+    <ul id="repositories" class="list col-xs-12">
         {{#each this}}
-        <li class="component-entry col-xs-3">
-            <a href="https://github.org/{{full_name}}">
-                <b>{{name}}</b>
-            </a>
-            <ul class="list-unstyled">
-                {{#branches}}
-                <li>
-                    {{this}}:
-                    <ul class="list-unstyled">
-                        <li>{{> travis_badge full_name=../full_name branch=this}}</li>
-                        <li>{{> coveralls_badge full_name=../full_name branch=this}}</li>
-                    </ul>
-                </li>
-                {{/branches}}
-            </ul>
+        <li class="list__item col-xs-3">
+            <article class="text-center">
+                <a href="https://github.org/{{full_name}}">
+                    <b>{{name}}</b>
+                </a>
+                <ul class="list-unstyled">
+                    {{#branches}}
+                    <li>
+                        {{this}}:
+                        <ul class="list-unstyled">
+                            <li>{{> travis_badge full_name=../full_name branch=this}}</li>
+                            <li>{{> coveralls_badge full_name=../full_name branch=this}}</li>
+                        </ul>
+                    </li>
+                    {{/branches}}
+                </ul>
+            </article>
         </li>
         {{/each}}
     </ul>
